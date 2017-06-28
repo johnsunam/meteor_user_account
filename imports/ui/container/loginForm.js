@@ -7,6 +7,7 @@ const composer = (props, onData) => {
         onData(null, {});
     } else {
         FlowRouter.go('/');
+
     }
 
 };
