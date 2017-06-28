@@ -65,18 +65,28 @@ export default function Register(props, context) {
                                 <div class="form-group">
                                     <div class="col-xs-12 col-sm-6 col-md-5">
                                         <button class="btn btn-block btn-success" type="button" onClick={(context)=>{
-                                            console.log(context);
+                                            
                                              let username =$("#register-username").val();
                                              let email =$("#register-email").val();
                                              let password = $("#register-password").val();
-                                             let password2 = $("#register-password").val();
-                                             Accounts.createUser({
-                                                email: email,
-                                                username: username,
-                                                password: password,
-                                             });
+                                             let password2 = $("#register-password2").val();
+                                             if(password == password2){
+                                                Accounts.createUser({
+                                                    email: email,
+                                                    username: username,
+                                                    password: password,
+                                                },error=>{
+                                                    if(!error)
+                                                        FlowRouter.go('/');
+                                                    else   
+                                                    alert(error.message);                                              
+                                                });
+                                                }else{
+                                                    alert('password not matched');
+                                             }
+                                            
 
-                                             FlowRouter.go('/');
+                                             
 
                                         }}><i class="fa fa-plus pull-right"></i> Sign Up</button>
                                     </div>

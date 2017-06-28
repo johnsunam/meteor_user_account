@@ -1,5 +1,6 @@
 import {FlowRouter} from 'meteor/kadira:flow-router';
-import Dashboard from '../../ui/container/dashboard';
+import Dashboard from '../../ui/components/dashboard.jsx';
+import {composeWithTracker} from 'react-komposer';
 
 const composer = (props, onData) => {
     if (Meteor.userId()) {

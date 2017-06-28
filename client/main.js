@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import {FlowRouter} from 'meteor/kadira:flow-router'
 import {ReactLayout} from 'meteor/kadira:react-layout'
-import Login from '../imports/ui/components/loginForm.jsx';
-import Register from '../imports/ui/components/singup.jsx';
+import Login from '../imports/ui/container/loginForm';
+import Register from '../imports/ui/container/singup';
 import Dashboard from '../imports/ui/container/dashboard';
 
 FlowRouter.route('/login', {

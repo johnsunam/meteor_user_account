@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import {FlowRouter} from 'meteor/kadira:flow-router';
 export default function Login(props, context) {
         return(<div className="content overflow-hidden">
             <div className="row">
@@ -23,7 +23,7 @@ export default function Login(props, context) {
                                 <div className="form-group">
                                     <div className="col-xs-12">
                                         <div className="form-material form-material-primary floating">
-                                            <input className="form-control" type="text" id="login-username" name="login-username"/>
+                                            <input className="form-control" type="text" id="username" name="username"/>
                                             <label for="login-username">Username</label>
                                         </div>
                                     </div>
@@ -31,7 +31,7 @@ export default function Login(props, context) {
                                 <div className="form-group">
                                     <div className="col-xs-12">
                                         <div className="form-material form-material-primary floating">
-                                            <input className="form-control" type="password" id="login-password" name="login-password"/>
+                                            <input className="form-control" type="password" id="password" name="password"/>
                                             <label for="login-password">Password</label>
                                         </div>
                                     </div>
@@ -45,8 +45,23 @@ export default function Login(props, context) {
                                 </div>
                                 <div className="form-group">
                                     <div className="col-xs-12 col-sm-6 col-md-4">
-                                        <button className="btn btn-block btn-primary" type="submit">
+                                        <button className="btn btn-block btn-primary" type="button" onClick={()=>{
+                                            let username = $('#username').val();
+                                            let password = $('#password').val();
+                                            Meteor.loginWithPassword(username,password,()=>{
+                                               if(Meteor.userId()){
+                                                FlowRouter.go('/');
+                                               }
+                                               else{
+                                                   console.log('register');
+                                                   FlowRouter.go('/register');
+                                               }
+                                            })
+                                        }}>
                                         <i class="si si-login pull-right"></i> Log in</button>
+                                        <a href="#" onClick={()=>{
+                                            FlowRouter.go('/register');
+                                        }}>Register user</a>
                                     </div>
                                 </div>
                             </form>
